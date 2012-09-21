@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>Description</td>
-<td></td>
+<td>Under 1K so its hot</td>
 </tr>
 <tr>
 <td>Node Version</td>
