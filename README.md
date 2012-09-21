@@ -1,30 +1,57 @@
-![status](https://secure.travis-ci.org/wearefractal/APPNAME.png?branch=master)
+![status](https://secure.travis-ci.org/wearefractal/swear.png?branch=master)
 
 ## Information
 
 <table>
 <tr> 
-<td>Package</td><td>APPNAME</td>
+<td>Package</td><td>swear</td>
 </tr>
 <tr>
 <td>Description</td>
-<td>NOTHING HERE YET</td>
+<td></td>
 </tr>
 <tr>
 <td>Node Version</td>
 <td>>= 0.4</td>
+</tr>
+<tr>
+<td>Size (minified)</td>
+<td>1008 bytes</td>
+</tr>
+<tr>
+<td>Size (gzipped)</td>
+<td>452 bytes</td>
 </tr>
 </table>
 
 ## Usage
 
 ```coffee-script
-NOTHING HERE YET
+p = swear()
+
+# success
+# resolve can take variable arguments
+p.when (data) -> console.log "Done! #{data}"
+p.resolve "test"
+
+# failure
+p.fail (err) -> console.log "Task failed! #{err}"
+p.abort new Error "something died"
+
+# sugar for node
+# p.wrap returns a function that will abort if the first arg exist or pass the rest of the args to resolve
+fs.readFileSync "test.txt", p.wrap()
+
+# join returns a new promise from as many promises as you want
+p2 = swear()
+newp = swear.join p, p2
+
+newp.when -> console.log "p and p2 done"
+newp.fail (err) -> console.log "p or p2 failed with #{err}"
+
+# aborting a promise will fail abort promise it was joined into
+p.abort "some error" # this will fail newp
 ```
-
-## Examples
-
-You can view more examples in the [example folder.](https://github.com/wearefractal/APPNAME/tree/master/examples)
 
 ## LICENSE
 

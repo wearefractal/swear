@@ -1,9 +1,9 @@
 {
-   "name":"APPNAME",
-   "description":"Nothing here yet",
+   "name":"swear",
+   "description":"Tiny and simple promises for the browser and node",
    "version":"0.0.1",
-   "homepage":"http://github.com/wearefractal/APPNAME",
-   "repository":"git://github.com/wearefractal/APPNAME.git",
+   "homepage":"http://github.com/wearefractal/swear",
+   "repository":"git://github.com/wearefractal/swear.git",
    "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
    "main":"./index.js",
    
@@ -23,7 +23,7 @@
    "licenses":[
       {
          "type":"MIT",
-         "url":"http://github.com/wearefractal/APPNAME/raw/master/LICENSE"
+         "url":"http://github.com/wearefractal/swear/raw/master/LICENSE"
       }
    ]
 }
