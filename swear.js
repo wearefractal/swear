@@ -63,17 +63,23 @@
   };
 
   swear.join = function() {
-    var handle, n, p, promises, _i, _len;
+    var arr, handle, n, p, promises, _i, _len;
     promises = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+    arr = [];
     n = swear();
     handle = function() {
       var d, next;
       d = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
       next = promises.pop();
       if (next == null) {
-        return n.resolve.apply(n, d);
+        return n.resolve.apply(n, arr);
       }
-      return next.when(handle);
+      return next.when(function() {
+        var a;
+        a = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+        arr.push(a);
+        return handle.apply(null, a);
+      });
     };
     for (_i = 0, _len = promises.length; _i < _len; _i++) {
       p = promises[_i];
