@@ -87,11 +87,14 @@ describe 'swear', ->
       p2 = swear()
       p3 = swear.join p, p2
       
-      p3.when done
-      p2.resolve()
-      p.resolve()
+      p3.when (a,b) ->
+        a.should.eql [1,2,3]
+        b.should.eql [4,5,6]
+        done()
+      p2.resolve 1,2,3
+      p.resolve 4,5,6
 
-    it 'should complete with success', (done) ->
+    it 'should complete with error', (done) ->
       p = swear()
       p2 = swear()
       p3 = swear.join p, p2

@@ -37,11 +37,14 @@ swear = ->
   return p
 
 swear.join = (promises...) ->
+  arr = []
   n = swear()
   handle = (d...) ->
     next = promises.pop()
-    return n.resolve d... unless next?
-    next.when handle
+    return n.resolve arr... unless next?
+    next.when (a...) ->
+      arr.push a
+      handle a...
   p.fail n.abort for p in promises
   handle()
   return n
