@@ -91,8 +91,8 @@ describe 'swear', ->
         a.should.eql [1,2,3]
         b.should.eql [4,5,6]
         done()
-      p2.resolve 1,2,3
       p.resolve 4,5,6
+      p2.resolve 1,2,3
 
     it 'should complete with error', (done) ->
       p = swear()
