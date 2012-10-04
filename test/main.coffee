@@ -90,6 +90,9 @@ describe 'swear', ->
       p3.when (a,b) ->
         a.should.eql [1,2,3]
         b.should.eql [4,5,6]
+        p.completed.should.be.true
+        p2.completed.should.be.true
+        p3.completed.should.be.true
         done()
       p.resolve 4,5,6
       p2.resolve 1,2,3

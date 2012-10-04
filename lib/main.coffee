@@ -11,13 +11,13 @@ swear = ->
 
     resolve: (val...) ->
       p.val = val
-      completed = true
+      p.completed = true
       cb val... for cb in p.fns
       return p
 
     abort: (e) ->
       p.err = e
-      completed = true
+      p.completed = true
       cb e for cb in p.efns
       return p
 
@@ -34,14 +34,13 @@ swear = ->
       else
         p.fns.push cb
       return p
-  return p
 
 swear.join = (promises...) ->
   arr = []
   n = swear()
   handle = (d...) ->
     next = promises.pop()
-    return n.resolve arr... unless next?
+    return n.resolve arr... unless next
     next.when (a...) ->
       arr.push a
       handle a...
@@ -49,7 +48,7 @@ swear.join = (promises...) ->
   handle()
   return n
 
-if module?.exports
+if module?
   module.exports = swear
 else
   window.swear = swear

@@ -5,7 +5,7 @@
 
   swear = function() {
     var p;
-    p = {
+    return p = {
       efns: [],
       fns: [],
       completed: false,
@@ -20,10 +20,10 @@
         };
       },
       resolve: function() {
-        var cb, completed, val, _i, _len, _ref;
+        var cb, val, _i, _len, _ref;
         val = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
         p.val = val;
-        completed = true;
+        p.completed = true;
         _ref = p.fns;
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
           cb = _ref[_i];
@@ -32,9 +32,9 @@
         return p;
       },
       abort: function(e) {
-        var cb, completed, _i, _len, _ref;
+        var cb, _i, _len, _ref;
         p.err = e;
-        completed = true;
+        p.completed = true;
         _ref = p.efns;
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
           cb = _ref[_i];
@@ -59,7 +59,6 @@
         return p;
       }
     };
-    return p;
   };
 
   swear.join = function() {
@@ -71,7 +70,7 @@
       var d, next;
       d = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
       next = promises.pop();
-      if (next == null) {
+      if (!next) {
         return n.resolve.apply(n, arr);
       }
       return next.when(function() {
@@ -89,7 +88,7 @@
     return n;
   };
 
-  if (typeof module !== "undefined" && module !== null ? module.exports : void 0) {
+  if (typeof module !== "undefined" && module !== null) {
     module.exports = swear;
   } else {
     window.swear = swear;
