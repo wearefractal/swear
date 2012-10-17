@@ -24,6 +24,8 @@
 </tr>
 </table>
 
+swear is a library that helps simplify asynchronous actions using the concept of promises. a promise can resolve or fail and you can set up an unlimited number of handlers for each result. if you find yourself saying "when this is done or if its already done do x" then this library will help clean up your code
+
 ## Usage
 
 ```coffee-script
