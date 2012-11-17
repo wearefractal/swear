@@ -1,3 +1,9 @@
+nextTick = (fn) ->
+  if process?
+    process.nextTick fn
+  else
+    setTimeout fn, 0
+
 swear = ->
   p =
     efns: []
@@ -23,14 +29,14 @@ swear = ->
 
     fail: (cb) ->
       if p.err
-        cb p.err
+        nextTick -> cb p.err
       else
         p.efns.push cb
       return p
 
     when: (cb) ->
       if p.val
-        cb p.val...
+        nextTick -> cb p.val...
       else
         p.fns.push cb
       return p
